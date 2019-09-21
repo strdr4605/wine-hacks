@@ -1,5 +1,5 @@
 import React from 'react';
-import { IVintage } from '../WineList';
+import { IVintage } from '../../types';
 
 interface Props {
     vintage: IVintage;
