@@ -1,7 +1,8 @@
 import React, { useState, useEffect, Dispatch, SetStateAction } from 'react';
 import './WineList.css';
+import { WineItem } from '../WineItem';
 
-interface IVintage {
+export interface IVintage {
   id: string;
   photo: {
     name: string;
@@ -13,16 +14,7 @@ interface IVintage {
   categorySimple: string[];
 }
 
-interface IWineItemProps {
-  vintage: IVintage;
-}
-
-const WineItem: React.FC<IWineItemProps> = ({ vintage }) => (<div>
-  <p>{vintage.id}</p>
-  <img src={vintage.photo.url} alt="" />
-</div>)
-
-const WineList: React.FC = () => {
+export const WineList: React.FC = () => {
   const [vintages, setVintages]: [IVintage[], Dispatch<SetStateAction<IVintage[]>>] = useState<IVintage[]>([]);
 
   useEffect(() => {
@@ -49,5 +41,3 @@ const WineList: React.FC = () => {
     </div>
   );
 }
-
-export default WineList;
