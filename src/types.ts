@@ -1,5 +1,5 @@
 export interface IVintage {
-  id: string;
+  id: number;
   photo: {
     name: string;
     url: string;
@@ -12,6 +12,7 @@ export interface IVintage {
 
 export enum ActionTypeEnum {
   FETCH_VINTAGES_SUCCESS = 'FETCH_VINTAGES_SUCCESS',
+  UPDATE_ROUND = 'UPDATE_ROUND',
 }
 
 export interface IAction {
@@ -31,8 +32,8 @@ export interface IQuestion {
 }
 
 export interface IRootState {
-  wineList: IVintage[];
+  wineList: Record<number, IVintage>;
   questions: IQuestion[]
   score: number,
-  round: Array<string>;
+  round: Array<number>;
 }

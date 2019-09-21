@@ -13,7 +13,7 @@
     "ordered-imports": [true],
     "member-ordering": [false],
     "curly": true,
-    "interface-name": [true, "never-prefix"],
+    "interface-name": [false],
     "array-type": [false],
     "no-empty-interface": false,
     "prefer-conditional-expression": false,
