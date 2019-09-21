@@ -1,16 +1,19 @@
 import React from 'react';
 import { IVintage } from '../../types';
+import './WineItem.css';
 
 interface Props {
     vintage: IVintage;
+    onClick(name: string): void;
 }
 
-export const WineItem: React.FC<Props> = ({ vintage }) => (
+export const WineItem: React.FC<Props> = ({ vintage, onClick }) => (
     <div className="wine-item">
-        <p>ID:  {vintage.id}</p>
-        <img src={vintage.photo.url} alt="" />
-        <p>Alcohol is: {vintage.alcohol}</p>
-        <p>Sugar is: {vintage.alcohol}</p>
-        <p>Year: {vintage.year}</p>
-        <p></p>
+        <div className="wine-details">
+            <img src={vintage.photo.url} alt="" />
+            <p>Alcohol is: {vintage.alcohol}</p>
+            <p>Sugar is: {vintage.alcohol}</p>
+            <p>Year: {vintage.year}</p>
+        </div>
+        <button className="btn wine-vote" onClick={() => onClick(vintage.photo.name)}>Vote this Wine</button>
     </div>)
