@@ -1,1 +1,2 @@
-export * from './WineList';
+export * from './WineItem';
+
