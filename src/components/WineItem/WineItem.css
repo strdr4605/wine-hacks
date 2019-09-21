@@ -1,0 +1,30 @@
+.wine-item {
+  margin: 25px;
+  padding-bottom: 30px;
+  text-align: center;
+  border: 3px solid #ccc;
+  transition: all 0.5s ease-in-out;
+}
+
+.wine-item img {
+  width: 250px;
+}
+
+.wine-item:hover {
+  border: 3px solid #70ff17;
+}
+
+.wine-details {
+  margin: 0 80px;
+  padding: 30px 0;
+}
+
+.wine-vote {
+  border: #fff;
+  font-size: 16px;
+  border-radius: 5px;
+  padding: 15px 30px;
+  color: #fff;
+  background-color: green;
+  cursor: pointer;
+}

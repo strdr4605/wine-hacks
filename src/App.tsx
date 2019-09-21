@@ -13,12 +13,12 @@ const App: React.FC = (): React.ReactElement => {
   }, []);
 
   useEffect(() => {
-    if (Object.keys(state.wineList).length){
+    if (Object.keys(state.wineList).length) {
       const objKeysArray: Array<number> = Object.keys(state.wineList).map(key => Number(key))
 
-      const newRound = objKeysArray.sort(() => .5 - Math.random()).slice(0,2);
-      
-      dispatch({type: ActionTypeEnum.UPDATE_ROUND, payload: newRound })
+      const newRound = objKeysArray.sort(() => .5 - Math.random()).slice(0, 2);
+
+      dispatch({ type: ActionTypeEnum.UPDATE_ROUND, payload: newRound })
     }
   }, [state.wineList]);
 
@@ -40,13 +40,19 @@ const App: React.FC = (): React.ReactElement => {
     dispatch({ type: ActionTypeEnum.FETCH_VINTAGES_SUCCESS, payload: vintagesObj })
   }
 
+  function onClickHandle(name: string): void {
+    alert(`You clicked on wine, named ${name}`)
+  }
+
   return (
     <div className="App">
-      {Object.keys(state.wineList).length > 0 && state.round.length > 0 && 
-      (<div className="quiz-section">
-        <WineItem vintage={state.wineList[state.round[0]]} />
-        <WineItem vintage={state.wineList[state.round[1]]} /> 
-      </div>)}
+      <h1 className="wine-question">Question ----- ????</h1>
+      {Object.keys(state.wineList).length > 0 && state.round.length > 0 &&
+        (<div className="quiz-section">
+          <WineItem vintage={state.wineList[state.round[0]]} onClick={onClickHandle} />
+          <h1>VS</h1>
+          <WineItem vintage={state.wineList[state.round[1]]} onClick={onClickHandle} />
+        </div>)}
       {console.log(state)}
     </div>
   );
