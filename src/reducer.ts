@@ -1,8 +1,8 @@
-import { ActionTypeEnum, IAction, IRootState } from "./types";
+import { ActionTypeEnum, IAction, IRootState, CompareEnum } from "./types";
 
 export const initialState: IRootState = {
   wineList: {},
-  questions: [],
+  questions: [{ question: 'Which wine is older?', field: 'year', compare: CompareEnum.OLDER }],
   score: 0,
   round: [],
 };
@@ -12,13 +12,13 @@ export function reducer(state: IRootState, action: IAction): IRootState {
     case ActionTypeEnum.FETCH_VINTAGES_SUCCESS:
       return {
         ...state,
-        wineList: action.payload ? action.payload : {}
-      };
+        wineList: action.payload ? action.payload : {},
+      }
     case ActionTypeEnum.UPDATE_ROUND:
       return {
         ...state,
-        round: action.payload ? action.payload : []
-      };
+        round: action.payload ? action.payload : [],
+      }
     default:
       return state;
   }

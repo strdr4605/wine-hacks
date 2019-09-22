@@ -21,8 +21,8 @@ export interface IAction {
 }
 
 export enum CompareEnum {
-  GREATER = '>',
-  LOWER = '<'
+  YOUNGER = '>',
+  OLDER = '<'
 }
 
 export interface IQuestion {
