@@ -1,4 +1,6 @@
 .wine-item {
+  font-family: 'Courgette', cursive;
+  background-color: #fff;
   margin: 25px;
   padding-bottom: 30px;
   text-align: center;
@@ -15,11 +17,13 @@
 }
 
 .wine-details {
+  font-size: 20px;
   margin: 0 80px;
   padding: 30px 0;
 }
 
 .wine-vote {
+  font-family: 'Courgette', cursive;
   border: #fff;
   font-size: 16px;
   border-radius: 5px;

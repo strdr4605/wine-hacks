@@ -4,12 +4,20 @@
   margin: 0;
 }
 
+body {
+  font-family: 'Courgette', cursive;
+}
+
 .App {
   padding: 15px 0;
 }
 
 .wine-question {
   text-align: center;
+}
+
+.wine-versus {
+  font-size: 30px;
 }
 
 .App-logo {

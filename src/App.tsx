@@ -88,7 +88,7 @@ const App: React.FC = (): React.ReactElement => {
       {Object.keys(state.wineList).length > 0 && state.round.players && state.round.players.length > 0 &&
         (<div className="quiz-section">
           <WineItem showInfo={showInfo} vintage={state.wineList[firstIndex]} onClick={onClickHandle} />
-          <h1>VS</h1>
+          <h1 className="wine-versus">VS</h1>
           <WineItem showInfo={showInfo} vintage={state.wineList[secondIndex]} onClick={onClickHandle} />
         </div>)}
       {console.log(state)}

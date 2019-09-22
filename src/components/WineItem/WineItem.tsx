@@ -10,10 +10,10 @@ interface Props {
 
 const wineInfo = (vintage: IVintage) => (
   <div>
-    <p>Alcohol is: {vintage.alcohol}</p>
-    <p>Sugar is: {vintage.alcohol}</p>
-    <p>Year: {vintage.year}</p>
-    <p>Wine type: {vintage.categorySimple.find(e => e)}</p>
+    <p>Alcohol is: <strong>{vintage.alcohol}</strong></p>
+    <p>Sugar is:  <strong>{vintage.alcohol}</strong></p>
+    <p>Year:  <strong>{vintage.year}</strong></p>
+    <p>Wine type:  <strong>{vintage.categorySimple.find(e => e)}</strong></p>
   </div>
 )
 
