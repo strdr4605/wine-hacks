@@ -87,11 +87,18 @@ const App: React.FC = (): React.ReactElement => {
 
       if (id === winner) {
         setShowInfo(true);
-        alert("Corrent");
-        setTimeout(round, 2000);
+        document.body.style.background = "#39ff14";
+        setTimeout(() => {
+          round(); setShowInfo(false);
+          document.body.style.background = "#fff";
+        }, 2000);
       } else {
-        alert("Lost");
-        setTimeout(round, 2000);
+        document.body.style.background = "#FF073A";
+        setTimeout(() => {
+          round(); setShowInfo(false);
+          document.body.style.background = "#fff";
+        }, 2000);
+
       }
     }
   }
