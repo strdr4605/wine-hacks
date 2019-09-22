@@ -1,12 +1,15 @@
 import React, { useReducer, useEffect, useState } from 'react';
 import './App.css';
 import { reducer, initialState } from './reducer';
-import { IVintage, ActionTypeEnum, CompareEnum } from './types';
+import { IVintage, ActionTypeEnum, CompareEnum, IQuestion, IRound } from './types';
 import { WineItem, WineQuestion } from './components';
 
 const App: React.FC = (): React.ReactElement => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const [showInfo, setShowInfo] = useState(false)
+
+  let firstIndex: number = 1;
+  let secondIndex: number = 2;
 
   useEffect(() => {
     document.title = "WineQuiz";
@@ -20,11 +23,16 @@ const App: React.FC = (): React.ReactElement => {
         Number(key)
       );
 
-      const newRound: number[] = objKeysArray
+      const players: number[] = objKeysArray
         .sort(() => 0.5 - Math.random())
         .slice(0, 2);
 
+      const randomQuestion: IQuestion = state.questions[Math.floor(Math.random() * state.questions.length)];
+      const newRound: IRound = { question: randomQuestion, players }
       dispatch({ type: ActionTypeEnum.UPDATE_ROUND, payload: newRound });
+
+      firstIndex = players[0];
+      secondIndex = players[1];
     }
   }, [state.wineList]);
 
@@ -53,11 +61,14 @@ const App: React.FC = (): React.ReactElement => {
     });
   }
 
-  function onClickHandle(id: number): void {
-    const firstWine: IVintage = state.wineList[state.round[0]]
-    const secondWine: IVintage = state.wineList[state.round[1]]
 
-    if (state.questions[0].compare === CompareEnum.OLDER) {
+
+  function onClickHandle(id: number): void {
+
+    const firstWine: IVintage = state.wineList[firstIndex]
+    const secondWine: IVintage = state.wineList[secondIndex]
+
+    if (state.questions[0].compare === CompareEnum.MORE) {
       const field: string = state.questions[0].field;
       // @ts-ignore
       const winner: number = firstWine[field] <= secondWine[field] ? firstWine.id : secondWine.id;
@@ -73,14 +84,14 @@ const App: React.FC = (): React.ReactElement => {
 
   return (
     <div className="App">
-      <WineQuestion question={state.questions[0]} />
-      {Object.keys(state.wineList).length > 0 && state.round.length > 0 &&
+      {state.round.question && <WineQuestion question={state.round.question} />}
+      {Object.keys(state.wineList).length > 0 && state.round.players && state.round.players.length > 0 &&
         (<div className="quiz-section">
-          <WineItem showInfo={showInfo} vintage={state.wineList[state.round[0]]} onClick={onClickHandle} />
+          <WineItem showInfo={showInfo} vintage={state.wineList[firstIndex]} onClick={onClickHandle} />
           <h1>VS</h1>
-          <WineItem showInfo={showInfo} vintage={state.wineList[state.round[1]]} onClick={onClickHandle} />
+          <WineItem showInfo={showInfo} vintage={state.wineList[secondIndex]} onClick={onClickHandle} />
         </div>)}
-  { console.log(state) }
+      {console.log(state)}
     </div >
   );
 };

@@ -1,0 +1,26 @@
+[{
+    "question": "Which wine is older?",
+    "field": "year",
+    "compare": ">"
+  },
+  {
+    "question": "Which wine is younger?",
+    "field": "year",
+    "compare": "<"
+  },
+  {
+    "question": "Which wine is more alcoholic?",
+    "field": "alcohol ",
+    "compare": ">"
+  },
+  {
+    "question": "Which wine has more sugar?",
+    "field": "sugar",
+    "compare": "<"
+  },
+  {
+    "question": "Which wine has less sugar?",
+    "field": "sugar",
+    "compare": "<"
+  }
+]
