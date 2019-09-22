@@ -8,6 +8,7 @@ const App: React.FC = (): React.ReactElement => {
   const [state, dispatch]: any = useReducer(reducer, initialState);
 
   useEffect(() => {
+    document.title = "WineQuiz";
     fetchWine();
     // eslint-disable-next-line
   }, []);
