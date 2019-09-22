@@ -13,9 +13,10 @@ import {
 const App: React.FC = (): React.ReactElement => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [showInfo, setShowInfo] = useState(false);
-
-  let firstIndex: number = 1;
-  let secondIndex: number = 2;
+  const [players, setPlayers] = useState({
+    firstIndex: 1,
+    secondIndex: 2
+  });
 
   useEffect(() => {
     document.title = "WineQuiz";
@@ -24,6 +25,11 @@ const App: React.FC = (): React.ReactElement => {
   }, []);
 
   useEffect(() => {
+    round();
+    // eslint-disable-next-line
+  }, [state.wineList]);
+
+  function round() {
     if (Object.keys(state.wineList).length) {
       const objKeysArray: Array<number> = Object.keys(state.wineList).map(key =>
         Number(key)
@@ -37,11 +43,12 @@ const App: React.FC = (): React.ReactElement => {
         state.questions[Math.floor(Math.random() * state.questions.length)];
       const newRound: IRound = { question: randomQuestion, players };
       dispatch({ type: ActionTypeEnum.UPDATE_ROUND, payload: newRound });
-
-      firstIndex = players[0];
-      secondIndex = players[1];
+      setPlayers({
+        firstIndex: players[0],
+        secondIndex: players[1]
+      });
     }
-  }, [state.wineList]);
+  }
 
   async function fetchWine(): Promise<void> {
     const a: any = new Array(13).fill(1).map((_, i) => i + 1);
@@ -69,8 +76,8 @@ const App: React.FC = (): React.ReactElement => {
   }
 
   function onClickHandle(id: number): void {
-    const firstWine: IVintage = state.wineList[firstIndex];
-    const secondWine: IVintage = state.wineList[secondIndex];
+    const firstWine: IVintage = state.wineList[players.firstIndex];
+    const secondWine: IVintage = state.wineList[players.secondIndex];
 
     if (state.questions[0].compare === CompareEnum.MORE) {
       const field: string = state.questions[0].field;
@@ -81,8 +88,10 @@ const App: React.FC = (): React.ReactElement => {
       if (id === winner) {
         setShowInfo(true);
         alert("Corrent");
+        setTimeout(round, 2000);
       } else {
         alert("Lost");
+        setTimeout(round, 2000);
       }
     }
   }
@@ -96,13 +105,13 @@ const App: React.FC = (): React.ReactElement => {
           <div className="quiz-section">
             <WineItem
               showInfo={showInfo}
-              vintage={state.wineList[firstIndex]}
+              vintage={state.wineList[players.firstIndex]}
               onClick={onClickHandle}
             />
             <h1>VS</h1>
             <WineItem
               showInfo={showInfo}
-              vintage={state.wineList[secondIndex]}
+              vintage={state.wineList[players.secondIndex]}
               onClick={onClickHandle}
             />
           </div>
