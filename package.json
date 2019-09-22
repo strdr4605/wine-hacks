@@ -2,7 +2,7 @@
   "name": "wine-hacks",
   "version": "0.1.0",
   "private": true,
-  "homepage" : "https://strdr4605.github.io/wine-hacks/",
+  "homepage": "https://strdr4605.github.io/wine-hacks/",
   "husky": {
     "hooks": {
       "pre-commit": "npm run pre-commit",
@@ -14,6 +14,7 @@
     "@types/node": "12.7.5",
     "@types/react": "16.9.2",
     "@types/react-dom": "16.9.0",
+    "change-case": "^3.1.0",
     "gh-pages": "^2.1.1",
     "husky": "^3.0.5",
     "react": "^16.9.0",
