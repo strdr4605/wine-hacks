@@ -1,11 +1,12 @@
-import React, { useEffect, useReducer } from "react";
-import "./App.css";
-import { WineItem } from "./components";
-import { initialState, reducer } from "./reducer";
-import { ActionTypeEnum, IVintage } from "./types";
+import React, { useReducer, useEffect, useState } from 'react';
+import './App.css';
+import { reducer, initialState } from './reducer';
+import { IVintage, ActionTypeEnum, CompareEnum } from './types';
+import { WineItem, WineQuestion } from './components';
 
 const App: React.FC = (): React.ReactElement => {
-  const [state, dispatch]: any = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState)
+  const [showInfo, setShowInfo] = useState(false)
 
   useEffect(() => {
     document.title = "WineQuiz";
@@ -28,7 +29,7 @@ const App: React.FC = (): React.ReactElement => {
   }, [state.wineList]);
 
   async function fetchWine(): Promise<void> {
-    const a: any = new Array(10).fill(1).map((_, i) => i + 1);
+    const a: any = new Array(13).fill(1).map((_, i) => i + 1);
     const vintPromises: Promise<IVintage>[] = [];
 
     for (const i of a) {
@@ -52,28 +53,35 @@ const App: React.FC = (): React.ReactElement => {
     });
   }
 
-  function onClickHandle(name: string): void {
-    alert(`You clicked on wine, named ${name}`);
+  function onClickHandle(id: number): void {
+    const firstWine: IVintage = state.wineList[state.round[0]]
+    const secondWine: IVintage = state.wineList[state.round[1]]
+
+    if (state.questions[0].compare === CompareEnum.OLDER) {
+      const field: string = state.questions[0].field;
+      // @ts-ignore
+      const winner: number = firstWine[field] <= secondWine[field] ? firstWine.id : secondWine.id;
+
+      if (id === winner) {
+        setShowInfo(true);
+        alert('Corrent')
+      } else {
+        alert('Lost')
+      }
+    }
   }
 
   return (
     <div className="App">
-      <h1 className="wine-question">Question ----- ????</h1>
-      {Object.keys(state.wineList).length > 0 && state.round.length > 0 && (
-        <div className="quiz-section">
-          <WineItem
-            vintage={state.wineList[state.round[0]]}
-            onClick={onClickHandle}
-          />
+      <WineQuestion question={state.questions[0]} />
+      {Object.keys(state.wineList).length > 0 && state.round.length > 0 &&
+        (<div className="quiz-section">
+          <WineItem showInfo={showInfo} vintage={state.wineList[state.round[0]]} onClick={onClickHandle} />
           <h1>VS</h1>
-          <WineItem
-            vintage={state.wineList[state.round[1]]}
-            onClick={onClickHandle}
-          />
-        </div>
-      )}
-      {console.log(state)}
-    </div>
+          <WineItem showInfo={showInfo} vintage={state.wineList[state.round[1]]} onClick={onClickHandle} />
+        </div>)}
+  { console.log(state) }
+    </div >
   );
 };
 
