@@ -1,12 +1,18 @@
-import React, { useReducer, useEffect, useState } from 'react';
-import './App.css';
-import { reducer, initialState } from './reducer';
-import { IVintage, ActionTypeEnum, CompareEnum, IQuestion, IRound } from './types';
-import { WineItem, WineQuestion } from './components';
+import React, { useEffect, useReducer, useState } from "react";
+import "./App.css";
+import { Footer, WineItem, WineQuestion } from "./components";
+import { initialState, reducer } from "./reducer";
+import {
+  ActionTypeEnum,
+  CompareEnum,
+  IQuestion,
+  IRound,
+  IVintage
+} from "./types";
 
 const App: React.FC = (): React.ReactElement => {
-  const [state, dispatch] = useReducer(reducer, initialState)
-  const [showInfo, setShowInfo] = useState(false)
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const [showInfo, setShowInfo] = useState(false);
 
   let firstIndex: number = 1;
   let secondIndex: number = 2;
@@ -27,8 +33,9 @@ const App: React.FC = (): React.ReactElement => {
         .sort(() => 0.5 - Math.random())
         .slice(0, 2);
 
-      const randomQuestion: IQuestion = state.questions[Math.floor(Math.random() * state.questions.length)];
-      const newRound: IRound = { question: randomQuestion, players }
+      const randomQuestion: IQuestion =
+        state.questions[Math.floor(Math.random() * state.questions.length)];
+      const newRound: IRound = { question: randomQuestion, players };
       dispatch({ type: ActionTypeEnum.UPDATE_ROUND, payload: newRound });
 
       firstIndex = players[0];
@@ -61,23 +68,21 @@ const App: React.FC = (): React.ReactElement => {
     });
   }
 
-
-
   function onClickHandle(id: number): void {
-
-    const firstWine: IVintage = state.wineList[firstIndex]
-    const secondWine: IVintage = state.wineList[secondIndex]
+    const firstWine: IVintage = state.wineList[firstIndex];
+    const secondWine: IVintage = state.wineList[secondIndex];
 
     if (state.questions[0].compare === CompareEnum.MORE) {
       const field: string = state.questions[0].field;
-      // @ts-ignore
-      const winner: number = firstWine[field] <= secondWine[field] ? firstWine.id : secondWine.id;
+      const winner: number =
+        // @ts-ignore
+        firstWine[field] <= secondWine[field] ? firstWine.id : secondWine.id;
 
       if (id === winner) {
         setShowInfo(true);
-        alert('Corrent')
+        alert("Corrent");
       } else {
-        alert('Lost')
+        alert("Lost");
       }
     }
   }
@@ -85,14 +90,26 @@ const App: React.FC = (): React.ReactElement => {
   return (
     <div className="App">
       {state.round.question && <WineQuestion question={state.round.question} />}
-      {Object.keys(state.wineList).length > 0 && state.round.players && state.round.players.length > 0 &&
-        (<div className="quiz-section">
-          <WineItem showInfo={showInfo} vintage={state.wineList[firstIndex]} onClick={onClickHandle} />
-          <h1 className="wine-versus">VS</h1>
-          <WineItem showInfo={showInfo} vintage={state.wineList[secondIndex]} onClick={onClickHandle} />
-        </div>)}
+      {Object.keys(state.wineList).length > 0 &&
+        state.round.players &&
+        state.round.players.length > 0 && (
+          <div className="quiz-section">
+            <WineItem
+              showInfo={showInfo}
+              vintage={state.wineList[firstIndex]}
+              onClick={onClickHandle}
+            />
+            <h1>VS</h1>
+            <WineItem
+              showInfo={showInfo}
+              vintage={state.wineList[secondIndex]}
+              onClick={onClickHandle}
+            />
+          </div>
+        )}
       {console.log(state)}
-    </div >
+      <Footer />
+    </div>
   );
 };
 
