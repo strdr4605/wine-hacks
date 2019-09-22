@@ -40,7 +40,11 @@ export const WineItem: React.FC<Props> = ({ vintage, onClick, showInfo }) => (
       <p>{getName(vintage)}</p>
       {showInfo && wineInfo(vintage)}
     </div>
-    <button className="btn wine-vote" onClick={() => onClick(vintage.id)}>
+    <button
+      disabled={showInfo}
+      className="btn wine-vote"
+      onClick={() => onClick(vintage.id)}
+    >
       Vote this Wine
     </button>
   </div>
