@@ -13,6 +13,8 @@ export interface IVintage {
 export enum ActionTypeEnum {
   FETCH_VINTAGES_SUCCESS = 'FETCH_VINTAGES_SUCCESS',
   UPDATE_ROUND = 'UPDATE_ROUND',
+  INCREMENT_SCORE = "INCREMENT_SCORE",
+  RESET_SCORE = "RESET_SCORE"
 }
 
 export interface IAction {

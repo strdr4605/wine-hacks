@@ -87,17 +87,23 @@ const App: React.FC = (): React.ReactElement => {
 
       if (id === winner) {
         setShowInfo(true);
+        dispatch({
+          type: ActionTypeEnum.INCREMENT_SCORE
+        })
         document.body.style.background = "#39ff14";
         setTimeout(() => {
           round(); setShowInfo(false);
           document.body.style.background = "#fff";
-        }, 2000);
+        }, 5000);
       } else {
+        dispatch({
+          type: ActionTypeEnum.RESET_SCORE
+        })
         document.body.style.background = "#FF073A";
         setTimeout(() => {
           round(); setShowInfo(false);
           document.body.style.background = "#fff";
-        }, 2000);
+        }, 5000);
 
       }
     }
@@ -106,6 +112,7 @@ const App: React.FC = (): React.ReactElement => {
   return (
     <div className="App">
       {state.round.question && <WineQuestion question={state.round.question} />}
+      <div className="quiz-counter">Your score: <span>{state.score}</span></div>
       {Object.keys(state.wineList).length > 0 &&
         state.round.players &&
         state.round.players.length > 0 && (
