@@ -1,5 +1,31 @@
 footer {
-  position: fixed;
+  width: 100%;
+  /* position: fixed; */
   bottom: 0;
-  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer a {
+  text-decoration: none;
+}
+
+footer a:link {
+  color: maroon;
+}
+footer a:visited {
+  color: green;
+}
+footer a:hover {
+  color: red;
+}
+footer a:active {
+  color: yellow;
+}
+
+footer div {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
 }

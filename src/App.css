@@ -9,7 +9,7 @@ body {
 }
 
 .App {
-  padding: 15px 0;
+  padding: 10px;
 }
 
 .wine-question {
@@ -40,9 +40,10 @@ body {
 }
 
 .quiz-section {
-  padding: 0 30px;
+  margin: 10px;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-
+  flex-flow: row;
+  flex-wrap: wrap;
 }
