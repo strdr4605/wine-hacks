@@ -20,6 +20,16 @@ export function reducer(state: IRootState, action: IAction): IRootState {
         ...state,
         round: action.payload ? action.payload : {},
       }
+    case ActionTypeEnum.INCREMENT_SCORE:
+      return {
+        ...state,
+        score: state.score + 1,
+      }
+    case ActionTypeEnum.RESET_SCORE:
+      return {
+        ...state,
+        score: 0,
+      }
     default:
       return state;
   }
