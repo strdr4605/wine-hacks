@@ -21,8 +21,8 @@ export interface IAction {
 }
 
 export enum CompareEnum {
-  YOUNGER = '>',
-  OLDER = '<'
+  MORE = '>',
+  LESS = '<'
 }
 
 export interface IQuestion {
@@ -31,9 +31,14 @@ export interface IQuestion {
   compare: CompareEnum;
 }
 
+export interface IRound {
+  question?: IQuestion;
+  players?: number[];
+}
+
 export interface IRootState {
   wineList: Record<number, IVintage>;
   questions: IQuestion[]
   score: number,
-  round: Array<number>;
+  round: IRound;
 }
