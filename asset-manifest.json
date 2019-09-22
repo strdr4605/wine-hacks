@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/wine-hacks/static/css/main.1a418b6e.chunk.css",
-    "main.js": "/wine-hacks/static/js/main.0f4c809e.chunk.js",
-    "main.js.map": "/wine-hacks/static/js/main.0f4c809e.chunk.js.map",
+    "main.js": "/wine-hacks/static/js/main.61021e13.chunk.js",
+    "main.js.map": "/wine-hacks/static/js/main.61021e13.chunk.js.map",
     "runtime-main.js": "/wine-hacks/static/js/runtime-main.26a92f54.js",
     "runtime-main.js.map": "/wine-hacks/static/js/runtime-main.26a92f54.js.map",
     "static/js/2.610d6333.chunk.js": "/wine-hacks/static/js/2.610d6333.chunk.js",
     "static/js/2.610d6333.chunk.js.map": "/wine-hacks/static/js/2.610d6333.chunk.js.map",
     "index.html": "/wine-hacks/index.html",
-    "precache-manifest.3f967a657436bb32eaf626b42b09d082.js": "/wine-hacks/precache-manifest.3f967a657436bb32eaf626b42b09d082.js",
+    "precache-manifest.6276d665bbb30e459bdfb7cc79487b0e.js": "/wine-hacks/precache-manifest.6276d665bbb30e459bdfb7cc79487b0e.js",
     "service-worker.js": "/wine-hacks/service-worker.js",
     "static/css/main.1a418b6e.chunk.css.map": "/wine-hacks/static/css/main.1a418b6e.chunk.css.map"
   }
